@@ -1,0 +1,60 @@
+<?php
+
+// Database connection (hardcoded credentials - bad practice)
+$host = "localhost";
+$user = "root";
+$pass = "password123";
+$db   = "test_db";
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// No input validation or sanitization
+$username = $_GET['username'];
+$password = $_GET['password'];
+
+// SQL Injection vulnerability
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($conn, $query);
+
+// No error handling for query failure
+if (mysqli_num_rows($result) > 0) {
+    echo "Login successful";
+} else {
+    echo "Invalid credentials";
+}
+
+// XSS vulnerability
+echo "<h1>Welcome " . $_GET['username'] . "</h1>";
+
+// File inclusion vulnerability
+$page = $_GET['page'];
+include($page);
+
+// Unused variable
+$temp = 12345;
+
+// Poor password hashing (MD5)
+$newPassword = md5($password);
+
+// Duplicate logic
+function calculateTotal($price, $tax) {
+    return $price + ($price * $tax);
+}
+
+function calculateTotalAgain($price, $tax) {
+    return $price + ($price * $tax);
+}
+
+// Bad error suppression
+$file = @file_get_contents("non_existing_file.txt");
+
+// Missing strict types and return types
+function add($a, $b) {
+    return $a + $b;
+}
+
+// Open database connection not closed
