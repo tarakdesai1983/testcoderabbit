@@ -29,17 +29,24 @@ if (mysqli_num_rows($result) > 0) {
 
 // XSS vulnerability
 echo "<h1>Welcome " . $_GET['username'] . "</h1>";
-echo "";
 
 // File inclusion vulnerability
 $page = $_GET['page'];
 include($page);
 
 // Unused variable
-$temp = 12345;
+$temp = 123456;
 
 // Poor password hashing (MD5)
 $newPassword = md5($password);
+
+// SQL Injection vulnerability
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($conn, $query);
+
+// SQL Injection vulnerability
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($conn, $query);
 
 // Duplicate logic
 function calculateTotal($price, $tax) {
