@@ -29,6 +29,7 @@ if (mysqli_num_rows($result) > 0) {
 
 // XSS vulnerability
 echo "<h1>Welcome " . $_GET['username'] . "</h1>";
+echo "";
 
 // File inclusion vulnerability
 $page = $_GET['page'];
