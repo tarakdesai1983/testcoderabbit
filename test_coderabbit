@@ -44,6 +44,9 @@ $newPassword = md5($password);
 $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 $result = mysqli_query($conn, $query);
 
+// SQL Injection vulnerability
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($conn, $query);
 
 // Duplicate logic
 function calculateTotal($price, $tax) {
