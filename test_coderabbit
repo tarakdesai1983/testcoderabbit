@@ -35,7 +35,7 @@ $page = $_GET['page'];
 include($page);
 
 // Unused variable
-$temp = 12345;
+$temp = 123456;
 
 // Poor password hashing (MD5)
 $newPassword = md5($password);
